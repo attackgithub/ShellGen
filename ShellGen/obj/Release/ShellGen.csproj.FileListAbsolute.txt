@@ -1,4 +1,0 @@
-C:\Users\X\Documents\Visual Studio 2015\Projects\ShellGen\ShellGen\bin\Release\ShellGen.dll
-C:\Users\X\Documents\Visual Studio 2015\Projects\ShellGen\ShellGen\bin\Release\ShellGen.pdb
-C:\Users\X\Documents\Visual Studio 2015\Projects\ShellGen\ShellGen\obj\Release\ShellGen.dll
-C:\Users\X\Documents\Visual Studio 2015\Projects\ShellGen\ShellGen\obj\Release\ShellGen.pdb
