@@ -49,7 +49,7 @@ namespace ShellGen
     /// <summary>
     /// An encrypted shellcode generator meant to accelerate development of security tools.
     /// </summary>
-    public static class Generator
+    public static class ShellGenerator
     {
         #region Methods
 
@@ -58,7 +58,7 @@ namespace ShellGen
         /// </summary>
         /// <param name="filepath">Location of a file to transform into encrypted shellcode.</param>
         /// <returns>A shell object containing encrypted shellcode from a file path.</returns>
-        public static Shell GenerateShell(string filepath, FormatType type, string password)
+        public static Shell GenerateShell(string filepath, FormatType type, string password = null)
         {
             // Generate an empty shell to fill.
             Shell s = new Shell();
@@ -68,7 +68,7 @@ namespace ShellGen
             {
                 Random r = new Random();
                 byte[] filebytes = filepath.Read();
-                byte[] encrypted = filebytes.Encrypt(password);
+                byte[] encrypted = (password == null) ? filebytes : filebytes.Encrypt(password);
                 string encoded = encrypted.Encode();
                 string formatted = encoded.Format(type);
                 string id = GenerateID(r.Next(5, 25));
@@ -85,7 +85,7 @@ namespace ShellGen
         /// </summary>
         /// <param name="filebytes">Bytes of a file to transform into encrypted shellcode.</param>
         /// <returns>A shell object containing encrypted shellcode from a byte array.</returns>
-        public static Shell GenerateShell(byte[] filebytes, FormatType type, string password)
+        public static Shell GenerateShell(byte[] filebytes, FormatType type, string password = null)
         {
             // Generate an empty shell to fill.
             Shell s = new Shell();
@@ -94,7 +94,7 @@ namespace ShellGen
             try
             {
                 Random r = new Random();
-                byte[] encrypted = filebytes.Encrypt(password);
+                byte[] encrypted = (password == null) ? filebytes : filebytes.Encrypt(password);
                 string encoded = encrypted.Encode();
                 string formatted = encoded.Format(type);
                 string id = GenerateID(r.Next(5, 25));
@@ -140,11 +140,11 @@ namespace ShellGen
         }
 
         /// <summary>
-        /// Encode a byte array into base64 
+        /// Encode a byte array into Base64.
         /// </summary>
         /// <param name="cipherbytes"></param>
         /// <returns>A byte array containing the encrypted bytes of a file.</returns>
-        private static string Encode(this byte[] cipherbytes)
+        public static string Encode(this byte[] cipherbytes)
         {
             // Encode our encrypted filebytes.
             string encoded = Convert.ToBase64String(cipherbytes);
@@ -196,7 +196,7 @@ namespace ShellGen
         /// </summary>
         /// <param name="length">The length of the identifier.</param>
         /// <returns>A randomly generated string of alphanumeric characters.</returns>
-        private static string GenerateID(int length)
+        public static string GenerateID(int length)
         {
             // Generate a random ID.
             string id = null;
@@ -224,6 +224,7 @@ namespace ShellGen
     /// <summary>
     /// An object representing a file in an encrypted shellcode form.
     /// </summary>
+    [Serializable]
     public class Shell
     {
         #region Variables
