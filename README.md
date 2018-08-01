@@ -118,12 +118,11 @@ unsigned int size = 56
 ```
 
 # Credits
-**Icon:** `Freepik`
-###### https://www.flaticon.com/authors/freepik
-<br>
+**Icon:** `Freepik` <br>
+https://www.flaticon.com/authors/freepik <br>
 
-**Encryption:** `sdrapkin`
-###### https://github.com/sdrapkin/SecurityDriven.Inferno
+**Encryption:** `sdrapkin` <br>
+https://github.com/sdrapkin/SecurityDriven.Inferno <br>
 
 # License
 
